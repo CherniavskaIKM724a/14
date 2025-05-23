@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+unsigned long fib(unsigned);
+int main()
+{
+    const unsigned num=30;
+    unsigned long search_el;
+    unsigned long *numbers{new unsigned long[num]};
+
+    for(unsigned i{};i<num;i++)
+    {
+        numbers[i]= fib(i);
+        cout<<i+1<<": "<< numbers[i]<<endl;
+    }
+    cout<<"What element are we looking for(integers only)? "; cin>>search_el;
+
+    int low = 0, high = num -1, mid;
+    while(numbers[low]<=search_el && numbers[high]>=search_el)
+    {
+        mid = low + ((search_el - numbers[low]) * (high - low)) / (numbers[high] - numbers[low]);
+        if(numbers[mid]>search_el){ high= mid-1;}
+        else if(numbers[mid]<search_el){ low = mid+1;}
+        else {cout<<"Its number is: "<< mid+1; break;}
+
+    }
+
+    if(!(numbers[low]<=search_el && numbers[high]>=search_el)) cout<<"There is no such element in the array";
+    delete[] numbers;
+    return 0;
+}
+
+unsigned long fib(unsigned n)
+{
+    if (n==0) return 1;
+    if (n==1) return 1;
+    else return fib(n-2)+fib(n-1);
+}
