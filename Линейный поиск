@@ -6,7 +6,7 @@ unsigned long fib(unsigned);
 int main()
 {
     int num=30,search_el,i{};
-    int *numbers{new int[num]};
+    unsigned long *numbers{new unsigned long[num]};
     for(unsigned i{};i<num;i++)
     {
         numbers[i]= fib(i);
